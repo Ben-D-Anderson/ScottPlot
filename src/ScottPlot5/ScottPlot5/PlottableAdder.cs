@@ -1196,6 +1196,158 @@ public class PlottableAdder(Plot plot)
         return scalebar;
     }
 
+    public SampledScatter SampledScatter(IScatterSource source, int sampleSize, Color? color = null)
+    {
+        Color nextColor = color ?? GetNextColor();
+        SampledScatter scatter = new(source, sampleSize)
+        {
+            LineColor = nextColor,
+            MarkerFillColor = nextColor,
+            MarkerLineColor = nextColor,
+        };
+        Plot.PlottableList.Add(scatter);
+        return scatter;
+    }
+
+    public SampledScatter SampledScatter(double x, double y, int sampleSize, Color? color = null)
+    {
+        double[] xs = { x };
+        double[] ys = { y };
+        ScatterSourceDoubleArray source = new(xs, ys);
+        return SampledScatter(source, sampleSize, color);
+    }
+
+    public SampledScatter SampledScatter(double[] xs, double[] ys, int sampleSize, Color? color = null)
+    {
+        ScatterSourceDoubleArray source = new(xs, ys);
+        return SampledScatter(source, sampleSize, color);
+    }
+
+    public SampledScatter SampledScatter(Coordinates point, int sampleSize, Color? color = null)
+    {
+        Coordinates[] coordinates = { point };
+        ScatterSourceCoordinatesArray source = new(coordinates);
+        return SampledScatter(source, sampleSize, color);
+    }
+
+    public SampledScatter SampledScatter(Coordinates[] coordinates, int sampleSize, Color? color = null)
+    {
+        ScatterSourceCoordinatesArray source = new(coordinates);
+        return SampledScatter(source, sampleSize, color);
+    }
+
+    public SampledScatter SampledScatter(List<Coordinates> coordinates, int sampleSize, Color? color = null)
+    {
+        ScatterSourceCoordinatesList source = new(coordinates);
+        return SampledScatter(source, sampleSize, color);
+    }
+
+    public SampledScatter SampledScatter<T1, T2>(T1[] xs, T2[] ys, int sampleSize, Color? color = null)
+    {
+        Color nextColor = color ?? GetNextColor();
+        ScatterSourceGenericArray<T1, T2> source = new(xs, ys);
+        SampledScatter scatter = new(source, sampleSize);
+        scatter.LineStyle.Color = nextColor;
+        scatter.MarkerStyle.FillColor = nextColor;
+        Plot.PlottableList.Add(scatter);
+        return scatter;
+    }
+
+    public SampledScatter SampledScatter<T1, T2>(List<T1> xs, List<T2> ys, int sampleSize, Color? color = null)
+    {
+        Color nextColor = color ?? GetNextColor();
+        ScatterSourceGenericList<T1, T2> source = new(xs, ys);
+        SampledScatter scatter = new(source, sampleSize);
+        scatter.LineStyle.Color = nextColor;
+        scatter.MarkerStyle.FillColor = nextColor;
+        Plot.PlottableList.Add(scatter);
+        return scatter;
+    }
+
+    public SampledScatter SampledScatterLine(IScatterSource source, int sampleSize, Color? color = null)
+    {
+        var scatter = SampledScatter(source, sampleSize, color);
+        scatter.MarkerSize = 0;
+        return scatter;
+    }
+
+    public SampledScatter SampledScatterLine(double[] xs, double[] ys, int sampleSize, Color? color = null)
+    {
+        var scatter = SampledScatter(xs, ys, sampleSize, color);
+        scatter.MarkerSize = 0;
+        return scatter;
+    }
+
+    public SampledScatter SampledScatterLine(Coordinates[] coordinates, int sampleSize, Color? color = null)
+    {
+        var scatter = SampledScatter(coordinates, sampleSize, color);
+        scatter.MarkerSize = 0;
+        return scatter;
+    }
+
+    public SampledScatter SampledScatterLine(List<Coordinates> coordinates, int sampleSize, Color? color = null)
+    {
+        var scatter = SampledScatter(coordinates, sampleSize, color);
+        scatter.MarkerSize = 0;
+        return scatter;
+    }
+
+    public SampledScatter SampledScatterLine<T1, T2>(T1[] xs, T2[] ys, int sampleSize, Color? color = null)
+    {
+        var scatter = SampledScatter(xs, ys, sampleSize, color);
+        scatter.MarkerSize = 0;
+        return scatter;
+    }
+
+    public SampledScatter SampledScatterLine<T1, T2>(List<T1> xs, List<T2> ys, int sampleSize, Color? color = null)
+    {
+        var scatter = SampledScatter(xs, ys, sampleSize, color);
+        scatter.MarkerSize = 0;
+        return scatter;
+    }
+
+    public SampledScatter SampledScatterPoints(IScatterSource source, int sampleSize, Color? color = null)
+    {
+        var scatter = SampledScatter(source, sampleSize, color);
+        scatter.LineWidth = 0;
+        return scatter;
+    }
+
+    public SampledScatter SampledScatterPoints(double[] xs, double[] ys, int sampleSize, Color? color = null)
+    {
+        var scatter = SampledScatter(xs, ys, sampleSize, color);
+        scatter.LineWidth = 0;
+        return scatter;
+    }
+
+    public SampledScatter SampledScatterPoints(Coordinates[] coordinates, int sampleSize, Color? color = null)
+    {
+        var scatter = SampledScatter(coordinates, sampleSize, color);
+        scatter.LineWidth = 0;
+        return scatter;
+    }
+
+    public SampledScatter SampledScatterPoints(List<Coordinates> coordinates, int sampleSize, Color? color = null)
+    {
+        var scatter = SampledScatter(coordinates, sampleSize, color);
+        scatter.LineWidth = 0;
+        return scatter;
+    }
+
+    public SampledScatter SampledScatterPoints<T1, T2>(T1[] xs, T2[] ys, int sampleSize, Color? color = null)
+    {
+        var scatter = SampledScatter(xs, ys, sampleSize, color);
+        scatter.LineWidth = 0;
+        return scatter;
+    }
+
+    public SampledScatter SampledScatterPoints<T1, T2>(List<T1> xs, List<T2> ys, int sampleSize, Color? color = null)
+    {
+        var scatter = SampledScatter(xs, ys, sampleSize, color);
+        scatter.LineWidth = 0;
+        return scatter;
+    }
+
     public Scatter Scatter(IScatterSource source, Color? color = null)
     {
         Color nextColor = color ?? GetNextColor();
